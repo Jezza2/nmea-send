@@ -1,10 +1,11 @@
 import serial
+from serial.tools import list_ports
 import argparse
 import time
 
 # Get a list of available serial ports
 def get_port_list():
-	ports = serial.tools.list_ports.comports(include_links=True)
+	ports = list_ports.comports(include_links=True)
 	return [p.device for p in ports ]
 
 def get_ports_string(ports):
