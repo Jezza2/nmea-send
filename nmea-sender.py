@@ -6,7 +6,7 @@ import time
 # Get a list of available serial ports
 def get_port_list():
 	ports = list_ports.comports(include_links=True)
-	return [p.device for p in ports ]
+	return [ p.device for p in ports ]
 
 def get_ports_string(ports):
 	return ', '.join(ports)
@@ -30,7 +30,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-c", action='store_true', help="Print checksum field and exit")
 parser.add_argument('-b', type=int, default=9600, help="Port baud rate (default: 9600)")
 parser.add_argument('-n', type=int, default=10, help="Send sentence n times (default: 10)")
-parser.add_argument('-s', type=int, default=100, help="Sleep time between sends in milliseconds")
+parser.add_argument('-s', type=int, default=100, help="Sleep time between sends in milliseconds (default: 100)")
 parser.add_argument("-p", default='', help="Serial port full path")
 parser.add_argument("sentence", help="NMEA sentence to send (excluding leading $, trailing * and checksum)")
 
