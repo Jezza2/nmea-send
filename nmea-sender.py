@@ -59,9 +59,11 @@ message_bytes = message_string.encode('utf-8')
 
 # Open port and send
 try:
-	with serial.Serial(port=args.p, baudrate=args.b) as ser:
+	with serial.Serial(port=args.p, baudrate=args.b, write_timeout=1.0, xonxoff=True) as ser:
 		for i in range(0, args.n):
 			ser.write(message_bytes)
 			time.sleep(args.s / 1000.0)
 except serial.serialutil.SerialException as e:
+	print(e)
+except serial.serial.SerialTimeoutException as e:
 	print(e)
